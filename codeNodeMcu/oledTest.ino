@@ -8,7 +8,7 @@
 #define OLED_RESET -1 // Reset pin # (or -1 if sharing Arduino reset pin)
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
-int rState=1;
+int rState=0;
 String state="000";
 String pinStatus= state;
 void setup() 
@@ -32,7 +32,7 @@ if(rState)
     else
     {
     
-      displayStatus("    NOT RECEIVED","PRESS STATUS BUTTON");
+      displayStatus("   NOT RECEIVED","PRESS STATUS.....");
     }
 
 
@@ -42,9 +42,10 @@ void displayStatus(String text1, String text2)
 {
   display.clearDisplay();
   display.setTextSize(1);
-  display.setCursor(8,2);
+  display.setCursor(8,4);
   display.print(text1);
   
+  display.drawRect(0, 0, 128, 64, WHITE);
   display.drawLine(0,15, display.width()-1,15, WHITE);
   display.setCursor(0,45);
   display.print(" PUMP  E-FENCE  LIGHT");
